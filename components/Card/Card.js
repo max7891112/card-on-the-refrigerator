@@ -9,12 +9,14 @@ class Card{
     render() {
         let htmlContent = `
             <div class="card__container">
-                <div class="card__item" id="${this.id++}"style="transform: rotate(${random(-15,15)}deg); 
-                background-color: rgb(${random(0,255)},${random(0,255)},${random(0,255)})">
-                    <p class="card__note">
-                        ${textarea.value}
-                    </p>
-                </div>
+                <div class="scale">
+                    <div class="card__item " id="${this.id++}"style="transform: rotate(${random(-15,15)}deg); 
+                    background-color: rgb(${random(0,255)},${random(0,255)},${random(0,255)})">
+                        <p class="card__note">
+                            ${textarea.value}
+                        </p>
+                    </div>
+                </div> 
             </div>
         `;
         const htmlWrapper = `
@@ -28,12 +30,14 @@ class Card{
     }
     shortRender() {
         let htmlContent = `
-            <div class="card__item" id="${this.id++}" style="transform: rotate(${random(-15,+15)}deg); 
+        <div class="scale">
+            <div class="card__item " id="${this.id++}"style="transform: rotate(${random(-15,15)}deg); 
             background-color: rgb(${random(0,255)},${random(0,255)},${random(0,255)})">
                 <p class="card__note">
                     ${textarea.value}
                 </p>
             </div>
+        </div> 
         `;
         document.querySelector('.card__container').innerHTML += htmlContent
         LocalStorageUtil.putNotes(this.id - 1, textarea.value)

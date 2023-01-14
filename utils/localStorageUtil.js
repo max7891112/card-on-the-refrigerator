@@ -31,12 +31,14 @@ class LocalStorageUtil{
     renderNotes(elem,value) {
         let htmlContent = `
             <div class="card__container">
+            <div class="scale">
                 <div class="card__item" id="${elem}" style="transform: rotate(${random(-15,15)}deg); 
                 background-color: rgb(${random(0,255)},${random(0,255)},${random(0,255)})">
                     <p class="card__note">
                         ${value}
                     </p>
                 </div>
+            </div>  
             </div>
         `;
         const htmlWrapper = `
@@ -49,12 +51,15 @@ class LocalStorageUtil{
     }
     renderShortNotes(elem,value) {
         let htmlContent = `
+        <div class="scale">
             <div class="card__item" id="${elem}" style="transform: rotate(${random(-15,+15)}deg); 
             background-color: rgb(${random(0,255)},${random(0,255)},${random(0,255)})">
                 <p class="card__note">
                     ${value}
                 </p>
             </div>
+        </div>
+            
         `;
         document.querySelector('.card__container').innerHTML += htmlContent
     }
