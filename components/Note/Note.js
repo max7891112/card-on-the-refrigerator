@@ -1,7 +1,7 @@
 import {ROOT_MODAL} from '../../constants/root';
 import './Note.css';
-import checkMark from './img/checkMark.png'
-import iconClose from './img/close.png'
+import checkMark from './img/checkMark.png';
+import iconClose from './img/close.png';
 import Card from '../Card';
 class Note{
     render() {

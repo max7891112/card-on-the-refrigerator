@@ -1,5 +1,6 @@
 import random from '../utils/supportFunc';
 import { ROOT_INDEX } from '../constants/root';
+import iconClose from'../components/Note/img/close.png';
 class LocalStorageUtil{
     constructor() {
         this.keyName = 'notes'
@@ -34,6 +35,7 @@ class LocalStorageUtil{
             <div class="scale">
                 <div class="card__item" id="${elem}" style="transform: rotate(${random(-15,15)}deg); 
                 background-color: rgb(${random(0,255)},${random(0,255)},${random(0,255)})">
+                <span class="imgContain close"><img src="${iconClose}"></span>
                     <p class="card__note">
                         ${value}
                     </p>
@@ -54,8 +56,9 @@ class LocalStorageUtil{
         <div class="scale">
             <div class="card__item" id="${elem}" style="transform: rotate(${random(-15,+15)}deg); 
             background-color: rgb(${random(0,255)},${random(0,255)},${random(0,255)})">
+            <span class="imgContain close"><img src="${iconClose}"></span>
                 <p class="card__note">
-                    ${value}
+                    ${value.replace(/(\n|\r)+/g, '<br>')}
                 </p>
             </div>
         </div>
