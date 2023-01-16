@@ -11,7 +11,7 @@ class Note{
                     <span class="imgContain" onclick="modal.innerHTML = ''"><img src="${iconClose}"></span>
                     <span class="imgContain" id="checker"><img src="${checkMark}"></span>
                 </div>
-                <textarea placeholder="Write Note..." class="textarea" id="textarea"></textarea>
+                <textarea placeholder="Write Note..." class="textarea" id="textarea" maxlength="140"></textarea>
             </div>
         `;
         const htmlWrapper = `

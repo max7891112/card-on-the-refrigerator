@@ -33,7 +33,7 @@ class Card{
         `;
 
         ROOT_INDEX.innerHTML += htmlWrapper
-        LocalStorageUtil.putNotes(this.countId(), textarea.value.replace(/(\n|\r)+/g, '<br>'))
+        // LocalStorageUtil.putNotes(this.countId(), textarea.value.replace(/(\n|\r)+/g, '<br>'))
         
     }
     shortRender() {
@@ -49,7 +49,7 @@ class Card{
         </div> 
         `;
         document.querySelector('.card__container').innerHTML += htmlContent
-        LocalStorageUtil.putNotes(this.countId(), textarea.value.replace(/(\n|\r)+/g, '<br>'))
+        // LocalStorageUtil.putNotes(this.countId(), textarea.value.replace(/(\n|\r)+/g, '<br>'))
     }
 }
 

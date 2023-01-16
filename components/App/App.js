@@ -32,13 +32,13 @@ class App{
                 let target = event.target.closest('.card__item')
                 if(!target) return
                 let content = target.lastElementChild.textContent.trim() // доработать отображение
-                let htmlContent = `
+                let htmlContent = ` 
                 <div class="modal__container">
                     <div class="checkMark">
                         <span class="imgContain" onclick="modal.innerHTML = ''"><img src="${iconClose}"></span>
                         <span class="imgContain" id="confirm"><img src="${checkMark}"></span>
                     </div>
-                    <textarea class="textarea" id="textarea">${content}</textarea>
+                    <textarea class="textarea" id="textarea" maxlength="140">${content}</textarea>
                 </div>
                 `;
                 const htmlWrapper = `
@@ -49,18 +49,9 @@ class App{
     
             ROOT_MODAL.innerHTML = htmlWrapper
 
-            document.querySelector('#confirm').addEventListener('click', function() {
-                target.lastElementChild.textContent = textarea.value;
-                let localStorageData = LocalStorageUtil.getNotes()
-                for(let elem of localStorageData) {
-                    if(+elem[0] == +target.id + 1) {
-                        elem[1] = textarea.value 
-                        localStorage.clear()
-                        localStorage.setItem('notes', JSON.stringify(localStorageData))
-                    }
-                }
+            document.querySelector('#confirm').addEventListener('click', function() { // если была нажата галочка на модальном окне
+                target.lastElementChild.textContent = textarea.value; // в параграф карточки заносятся данные из textarea
                 modal.innerHTML = '';
-                
             })
             
             })
@@ -68,12 +59,20 @@ class App{
             document.addEventListener('click', (event) => {
                 let target = event.target.closest('.close');
                 if(!target) return;
-                target.parentNode.parentNode.innerHTML = '';
-                ROOT_MODAL.innerHTML = '';
+                target.parentNode.parentNode.innerHTML = ''; // при закрытии закрывается карточка
+                ROOT_MODAL.innerHTML = ''; // и закрывается модальное окно
             })
+
+            window.onbeforeunload = () => { // в момент ухода пользователя все данные на странице уходят в localStorage
+                let cards = document.querySelectorAll('.card__item') // получаем все карточки
+                localStorage.clear(); // очищаем хранилище
+                for(let card of cards) {
+                    LocalStorageUtil.putNotes(card.id, card.lastElementChild.textContent.trim()) // добавляем все актуальные данные в хранилище
+                }
+            }
         
         } 
-        catch(error) {
+        catch(error) { // обработчик ошибок
             ROOT_INDEX.innerHTML = '';
             Error.render()
             console.log(error.message, error.fileName, error.lineNumber)
@@ -83,4 +82,4 @@ class App{
 
 export default new App();
 
-// ,[2,"add spinner\n"],
+// добавить спиннер, адекватное отображение текста при переносах, добавить библиотеку хрома
