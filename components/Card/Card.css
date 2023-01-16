@@ -19,6 +19,7 @@
    padding: var(--spacing-medium); 
    margin: var(--spacing-sm);
    overflow-wrap: break-word;
+   transition: box-shadow .2s ease-in;
 }
 
 .card__item:hover{
@@ -29,6 +30,10 @@
 
 .card__note{
     font-size: 20px;
+}
+
+.scale{
+    transition: transform .2s ease-in;
 }
 
 .scale:hover{
