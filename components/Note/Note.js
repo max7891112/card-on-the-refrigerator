@@ -24,9 +24,9 @@ class Note{
         
         checker.addEventListener('click', function listener() {
             if(document.querySelector('.card__container')) {
-                Card.shortRender()
+                Card.shortRender(Card.countId(), textarea.value)
             } else {
-                Card.render()
+                Card.render(Card.countId(), textarea.value)
             }
             modal.innerHTML = ''
         })

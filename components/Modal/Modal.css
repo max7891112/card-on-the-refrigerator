@@ -1,0 +1,14 @@
+.modal__container .open{
+    transform: translateY(100px);
+}
+
+.modal__container .disappearance{
+    transform: translateY(-200px);
+}
+
+
+
+
+
+
+

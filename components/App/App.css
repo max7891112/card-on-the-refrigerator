@@ -79,4 +79,9 @@ body {
     border-radius: 5px;
     color: var(--color-white);
     font-size: 16px;
+    transition: box-shadow .2s ease-in;
+}
+
+.btnForCreateNote:hover{
+    box-shadow: var(--box-shadow);
 }

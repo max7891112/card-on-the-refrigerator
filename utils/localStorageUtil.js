@@ -1,6 +1,4 @@
-import random from '../utils/supportFunc';
-import { ROOT_INDEX } from '../constants/root';
-import iconClose from'../components/Note/img/close.png';
+import Card from '../components/Card'
 class LocalStorageUtil{
     constructor() {
         this.keyName = 'notes'
@@ -29,42 +27,21 @@ class LocalStorageUtil{
 
         return {pushProduct, notes}
     }
-    renderNotes(elem,value) {
-        let htmlContent = `
-            <div class="card__container">
-            <div class="scale">
-                <div class="card__item" id="${elem}" style="transform: rotate(${random(-15,15)}deg); 
-                background-color: rgb(${random(0,255)},${random(0,255)},${random(0,255)})">
-                <span class="imgContain close"><img src="${iconClose}"></span>
-                    <p class="card__note">
-                        ${value}
-                    </p>
-                </div>
-            </div>  
-            </div>
-        `;
-        const htmlWrapper = `
-            <div class="card__wrapper">
-                ${htmlContent}
-            </div>
-        `;
 
-        ROOT_INDEX.innerHTML += htmlWrapper
+    renderLoading() {
+        if(this.getNotes().length != 0) {
+            this.getNotes().forEach((element, index) => {
+                if(index == 0) {
+                    Card.render(Card.countId(), element[1]) // если элемент первый то создаем первичный контейнер для него
+                } else {
+                    Card.shortRender(Card.countId(), element[1]) // добавляем новые карточки в уже созданный контейнер
+                };
+            });
+        } ;
     }
-    renderShortNotes(elem,value) {
-        let htmlContent = `
-        <div class="scale">
-            <div class="card__item" id="${elem}" style="transform: rotate(${random(-15,+15)}deg); 
-            background-color: rgb(${random(0,255)},${random(0,255)},${random(0,255)})">
-            <span class="imgContain close"><img src="${iconClose}"></span>
-                <p class="card__note">
-                    ${value.replace(/(\n|\r)+/g, '<br>')}
-                </p>
-            </div>
-        </div>
-            
-        `;
-        document.querySelector('.card__container').innerHTML += htmlContent
+
+    clear() {
+        localStorage.clear()
     }
 }
 
