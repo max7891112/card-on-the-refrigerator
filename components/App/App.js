@@ -3,19 +3,24 @@ import Error from '../Error';
 import { ROOT_MODAL,ROOT_INDEX } from "../../constants/root";
 import './App.css';
 import Modal from '../Modal';
-import Note from '../Note'
+import Note from '../Note';
+import Spinner from '../Spinner'
 class App{
     render() {
-        // try{
-            LocalStorageUtil.renderLoading()
-            Note.render();
-            this.eventListener()
-        // } 
-        // catch(error) { // обработчик ошибок
-            // ROOT_INDEX.innerHTML = '';
-            // Error.render()
-            // console.log(error.message, error.fileName, error.lineNumber)
-        // }; 
+        try{
+            Spinner.render()
+            setTimeout(() => {
+                LocalStorageUtil.renderLoading();
+                Note.render();
+                this.eventListener();
+                Spinner.handleClear();
+            },500)
+        } 
+        catch(error) { // обработчик ошибок
+            ROOT_INDEX.innerHTML = '';
+            Error.render();
+            console.log(error.message, error.fileName, error.lineNumber);
+        }; 
     }; 
     eventListener() {
         document.addEventListener('click', (event) => {
@@ -26,10 +31,10 @@ class App{
 
 
         document.addEventListener('click', (event) =>{
-            let target = event.target.closest('.card__item')
-            if(!target) return
-            let content = target.lastElementChild.textContent.trim() // доработать отображение
-            Modal.open(content)
+            let target = event.target.closest('.card__item');
+            if(!target) return;
+            let content = target.lastElementChild.textContent.trim(); // доработать отображение
+            Modal.open(content);
 
              document.querySelector('#confirmer').addEventListener('click', function() { // если была нажата галочка на модальном окне
                 target.lastElementChild.textContent = textarea.value; // в параграф карточки заносятся данные из textarea
@@ -46,15 +51,15 @@ class App{
         })
 
         window.onbeforeunload = () => { // в момент ухода пользователя все данные на странице уходят в localStorage
-            let cards = document.querySelectorAll('.card__item') // получаем все карточки
+            let cards = document.querySelectorAll('.card__item'); // получаем все карточки
             LocalStorageUtil.clear(); // очищаем хранилище
             for(let card of cards) {
-                LocalStorageUtil.putNotes(card.id, card.lastElementChild.textContent.trim()) // добавляем все актуальные данные в хранилище
-            }
-        }
-    }
+                LocalStorageUtil.putNotes(card.id, card.lastElementChild.textContent.trim()); // добавляем все актуальные данные в хранилище
+            };
+        };
+    };
 };
 
 export default new App();
 
-// добавить спиннер, адекватное отображение текста при переносах, добавить библиотеку хрома,добавить анимацию модальных окон
+// адекватное отображение текста при переносах,добавить анимацию модальных окон

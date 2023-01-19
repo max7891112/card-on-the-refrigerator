@@ -1,5 +1,5 @@
-import {ROOT_ERROR} from '../../constants/root'
-import './Error.css'
+import {ROOT_ERROR} from '../../constants/root';
+import './Error.css';
 class Error {
 
     render() {
@@ -10,9 +10,9 @@ class Error {
                     <p>Попробуйте зайти позже</p>
                 </div>
             </div>
-        `
+        `;
         ROOT_ERROR.innerHTML = html;
     }
 
 } 
-export default new Error()
+export default new Error();

@@ -3,9 +3,9 @@ import iconClose from '../Note/img/close.png';
 import { ROOT_MODAL} from "../../constants/root";
 class Modal{
     constructor() {
-        this.ANIMATION_SPEED = 200
-        this.closing = false
-        this.destroyed = false
+        this.ANIMATION_SPEED = 200;
+        this.closing = false;
+        this.destroyed = false;
     }
     render(content) {
         let htmlContent = ` 
@@ -23,26 +23,26 @@ class Modal{
                 </div>
             `;
     
-            ROOT_MODAL.innerHTML = htmlWrapper 
+            ROOT_MODAL.innerHTML = htmlWrapper;
      
     }
     
     open(content) {
-        this.render(content)
-        document.querySelector('.modal__container').classList.add('open')
+        this.render(content);
+        document.querySelector('.modal__container').classList.add('open');
     }
 
     close() {   
-        let modal = document.querySelector('.modal__container')
-        this.closing = true
-        modal.classList.remove('open')
-        modal.classList.add('disappearance')
+        let modal = document.querySelector('.modal__container');
+        this.closing = true;
+        modal.classList.remove('open');
+        modal.classList.add('disappearance');
         setTimeout(() => {
-            modal.classList.remove('disappearance')
-            modal.classList.add('hidden')
-            this.closing = false
-        },this.ANIMATION_SPEED)
-    }
+            modal.classList.remove('disappearance');
+            modal.classList.add('hidden');
+            this.closing = false;
+        },this.ANIMATION_SPEED);
+    };
     // destroy() {
     //     modalWindow.parentElement.removeChild(modalWindow)
     //     closeIcon.removeEventListener('click', listenerForCloseICon)
@@ -51,4 +51,4 @@ class Modal{
     // } 
 }
 
-export default new Modal()
+export default new Modal();

@@ -20,17 +20,17 @@ class Note{
             </div>
         `;
 
-        ROOT_MODAL.innerHTML = htmlWrapper
+        ROOT_MODAL.innerHTML = htmlWrapper;
         
         checker.addEventListener('click', function listener() {
             if(document.querySelector('.card__container')) {
-                Card.shortRender(Card.countId(), textarea.value)
+                Card.shortRender(Card.countId(), textarea.value);
             } else {
-                Card.render(Card.countId(), textarea.value)
-            }
-            modal.innerHTML = ''
-        })
-    }
-}
+                Card.render(Card.countId(), textarea.value);
+            };
+            modal.innerHTML = '';
+        });
+    };
+};
 
-export default new Note()
+export default new Note();
