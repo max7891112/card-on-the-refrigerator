@@ -34,6 +34,8 @@ class App{
             let target = event.target.closest('.card__item');
             if(!target) return;
             let content = target.lastElementChild.textContent.trim(); // доработать отображение
+            // content = content.replaceAll('<br>', '')
+            // console.log(content)
             Modal.open(content);
 
              document.querySelector('#confirmer').addEventListener('click', function() { // если была нажата галочка на модальном окне

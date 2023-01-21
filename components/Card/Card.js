@@ -14,12 +14,13 @@ class Card{
     }
 
     render(elem,value) {
+        let rotate = `rotate(${random(-10,10)}deg)`
         let color = `rgb(${random(0,255)},${random(0,255)},${random(0,255)})`;
         let htmlContent = `
         <button id="btn" class="btn btnForCreateNote">Create note</button>
             <div class="card__container">
                 <div class="scale">
-                    <div class="card__item " id="${elem}"style="transform: rotate(${random(-10,10)}deg); 
+                    <div class="card__item " id="${elem}"style="transform: ${rotate}; 
                     background-color: ${color}">
                     <span class="imgContain close"><img src="${iconClose}" ></span>
                         <p class="card__note">
@@ -38,13 +39,13 @@ class Card{
         ROOT_INDEX.innerHTML += htmlWrapper;
 
         this.checkAndReplaceColor(color);
-        // LocalStorageUtil.putNotes(this.countId(), textarea.value.replace(/(\n|\r)+/g, '<br>'))
     }
     shortRender(elem,value) {
+        let rotate = `rotate(${random(-10,10)}deg)`
         let color = `rgb(${random(0,255)},${random(0,255)},${random(0,255)})`;
         let htmlContent = `
         <div class="scale">
-            <div class="card__item " id="${elem}"style="transform: rotate(${random(-10,10)}deg); 
+            <div class="card__item " id="${elem}"style="transform: ${rotate}; 
             background-color: ${color}">
             <span class="imgContain close"><img src="${iconClose}"></span>
                 <p class="card__note">

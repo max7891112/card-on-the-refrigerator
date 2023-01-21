@@ -24,9 +24,9 @@ class Note{
         
         checker.addEventListener('click', function listener() {
             if(document.querySelector('.card__container')) {
-                Card.shortRender(Card.countId(), textarea.value);
+                Card.shortRender(Card.countId(), textarea.value.replace(/(\n|\r)+/g, '<br>'));
             } else {
-                Card.render(Card.countId(), textarea.value);
+                Card.render(Card.countId(), textarea.value.replace(/(\n|\r)+/g, '<br>'));
             };
             modal.innerHTML = '';
         });
