@@ -17,7 +17,6 @@ class Card{
         let rotate = `rotate(${random(-10,10)}deg)`
         let color = `rgb(${random(0,255)},${random(0,255)},${random(0,255)})`;
         let htmlContent = `
-        <button id="btn" class="btn btnForCreateNote">Create note</button>
             <div class="card__container">
                 <div class="scale">
                     <div class="card__item " id="${elem}"style="transform: ${rotate}; 

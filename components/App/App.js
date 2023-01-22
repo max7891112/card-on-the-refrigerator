@@ -10,6 +10,7 @@ class App{
         try{
             Spinner.render()
             setTimeout(() => {
+                ROOT_INDEX.innerHTML = '<button id="btn" class="btn btnForCreateNote">Create note</button>';
                 LocalStorageUtil.renderLoading();
                 Note.render();
                 this.eventListener();
@@ -40,17 +41,29 @@ class App{
 
              document.querySelector('#confirmer').addEventListener('click', function() { // если была нажата галочка на модальном окне
                 target.lastElementChild.textContent = textarea.value; // в параграф карточки заносятся данные из textarea
-                let modal = document.querySelector('#modal');
-                modal.innerHTML = '';
+                Modal.close()
             })
         })
 
-        document.addEventListener('click', (event) => {
+        document.addEventListener('keydown', (event) => {
+            if(event.code.toLowerCase() == 'escape') {
+                Modal.close()
+            }
+        })
+
+        document.addEventListener('click', (event) => { // закрытие карточки
             let target = event.target.closest('.close');
             if(!target) return;
-            target.parentNode.parentNode.innerHTML = ''; // при закрытии закрывается карточка
+            target.parentNode.parentNode.innerHTML = ''; // при закрытии закрывается карточка не совсем правильно но работает
             ROOT_MODAL.innerHTML = ''; // и закрывается модальное окно
         })
+
+        document.addEventListener('click', (event) => { // закрытие модального окна
+            let target = event.target;
+            if(target.dataset.close) {
+                Modal.close()
+            };
+        });
 
         window.onbeforeunload = () => { // в момент ухода пользователя все данные на странице уходят в localStorage
             let cards = document.querySelectorAll('.card__item'); // получаем все карточки
@@ -64,4 +77,4 @@ class App{
 
 export default new App();
 
-// адекватное отображение текста при переносах,добавить анимацию модальных окон
+// адекватное отображение текста при переносах
